@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Match Point — 멘토링 매칭 플랫폼</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<!-- ══ 인증 화면 ════════════════════════════════ -->
+<div id="auth-screen">
+  <!-- 왼쪽: 브랜딩 패널 -->
+  <div class="auth-left">
+    <div class="auth-brand">
+      <span class="auth-brand-icon">🎯</span>
+      <h1>Match Point</h1>
+      <p>나에게 딱 맞는 멘토를 찾아<br>커리어의 전환점을 만들어보세요.</p>
+      <div class="auth-features">
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🤝</div>
+          <span>관심 분야별 멘토 매칭</span>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">📅</div>
+          <span>희망 일정에 맞는 상담 예약</span>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">📝</div>
+          <span>상담 기록 및 후속 과제 관리</span>
+        </div>
+      </div>
+      <a href="./landing.html" style="display:inline-flex;align-items:center;gap:.4rem;margin-top:2rem;font-size:.8rem;font-weight:700;color:#f97316;text-decoration:none;opacity:.85">
+        서비스 소개 보기 →
+      </a>
+    </div>
+  </div>
+
+  <!-- 오른쪽: 로그인/회원가입 폼 -->
+  <div class="auth-right">
+    <div class="auth-box">
+      <div style="font-size:1.75rem;margin-bottom:.35rem">🎯</div>
+      <div class="auth-box-title">Match Point</div>
+      <div class="auth-box-sub">멘토링 매칭 플랫폼</div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth="login">로그인</button>
+        <button class="auth-tab" data-auth="signup">회원가입</button>
+      </div>
+
+      <!-- 로그인 폼 -->
+      <form class="auth-form active" id="login-form">
+        <div class="field">
+          <label>닉네임</label>
+          <input id="login-nickname" type="text" placeholder="닉네임 입력" required autocomplete="username">
+        </div>
+        <div class="field">
+          <label>비밀번호</label>
+          <input id="login-password" type="password" placeholder="비밀번호 입력" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" style="margin-top:.5rem;padding:.8rem;font-size:.9rem">로그인</button>
+      </form>
+
+      <!-- 회원가입 폼 -->
+      <form class="auth-form" id="signup-form">
+        <div class="field">
+          <label>역할 선택</label>
+          <div class="auth-role-toggle">
+            <button type="button" class="role-btn active" data-role="mentee">🙋 멘티</button>
+            <button type="button" class="role-btn" data-role="mentor">🎓 멘토</button>
+          </div>
+          <input type="hidden" id="signup-role" value="mentee">
+        </div>
+        <div class="field">
+          <label>닉네임 <small>영문·숫자·_ 2~20자</small></label>
+          <input id="signup-nickname" type="text" placeholder="hong_gildong" required>
+        </div>
+        <div class="field">
+          <label>비밀번호 <small>영문+숫자+특수문자 8자 이상</small></label>
+          <input id="signup-password" type="password" placeholder="••••••••" required>
+        </div>
+        <div id="mentee-fields">
+          <div class="field">
+            <label>전공</label>
+            <input id="signup-major" type="text" placeholder="컴퓨터공학">
+          </div>
+          <div class="field">
+            <label>관심 분야 <small>쉼표로 구분</small></label>
+            <input id="signup-interest" type="text" placeholder="AWS, Backend">
+          </div>
+        </div>
+        <div id="mentor-fields" style="display:none">
+          <div class="field">
+            <label>전문 분야 <small>쉼표로 구분</small></label>
+            <input id="signup-mentor-fields" type="text" placeholder="AWS, Backend">
+          </div>
+          <div class="field">
+            <label>소개 <small>선택</small></label>
+            <textarea id="signup-intro" placeholder="안녕하세요..."></textarea>
+          </div>
+          <p style="font-size:.75rem;color:var(--c-muted);margin-bottom:.75rem">
+            📅 상담 가능 시간은 가입 후 프로필에서 설정할 수 있습니다.
+          </p>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" style="margin-top:.5rem;padding:.8rem;font-size:.9rem">가입하기</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 앱 화면 ══════════════════════════════════ -->
+<div id="app-screen">
+  <header class="topbar">
+    <div class="topbar-brand">
+      <div class="brand-icon">🎯</div>
+      <div>
+        <div class="topbar-brand-name">Match Point</div>
+        <div class="topbar-brand-sub">멘토링 매칭 플랫폼</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="user-chip">
+        <div class="user-avatar" id="user-avatar">?</div>
+        <div>
+          <div class="user-name" id="user-name">-</div>
+          <div class="user-role" id="user-role">-</div>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-sm" id="logout-btn">로그아웃</button>
+    </div>
+  </header>
+
+  <div class="app-body">
+    <nav class="sidebar" id="sidebar"></nav>
+    <main class="main-content" id="main-content"></main>
+  </div>
+</div>
+
+<!-- ══ 모달 ══════════════════════════════════════ -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title" id="modal-title">-</span>
+      <button class="btn btn-ghost btn-icon" id="modal-close">✕</button>
+    </div>
+    <div id="modal-body"></div>
+    <div class="modal-footer" id="modal-footer"></div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="./app.js"></script>
+</body>
+</html>
